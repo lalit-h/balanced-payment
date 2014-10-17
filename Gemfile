@@ -9,5 +9,7 @@ gem 'therubyracer',  platforms: :ruby
 gem 'balanced', '1.0.2'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'byebug', group: [:development]
+gem 'byebug', group: [:development, :test]
+
+ruby "2.1.2"
 
