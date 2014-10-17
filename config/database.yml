@@ -48,7 +48,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: balanced_payment_production
+  dapter: postgresql
+  encoding: unicode
   username: balanced_payment
-  password: <%= ENV['BALANCED_PAYMENT_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_URl'] %>
+  pool: 5
