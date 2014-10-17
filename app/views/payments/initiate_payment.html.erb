@@ -1,0 +1,40 @@
+<% config = YAML.load_file("#{Rails.root.to_s}/config/balanced.yml")[Rails.env] %>
+<script type="text/javascript" src="https://js.balancedpayments.com/v1/balanced.js"></script>
+<script >
+  balanced.init('/v1/marketplaces/<%= config['BALANCED_MARKETPLACE'] %>');
+</script>
+
+ </br>
+<%= link_to "Back", root_path, data: { no_turbolink: true } %>
+ </br></br>
+
+ <div>
+  <label >Payment Amount</label>
+  <div >
+    $<%= text_field_tag "amount", 99.99 %>
+  </div>
+</div>
+
+<div>
+  <label >Payment Options</label>
+  <div >
+    <%= radio_button_tag "bank_account", 1, false, :class => "jqTransformRadio", name: "payment_option" %>
+      Bank Account &nbsp;&nbsp;
+    <%= radio_button_tag "credit_card", 0, false,  :class => "jqTransformRadio", name: "payment_option" %>
+     Credit Card
+  </div>
+</div>
+
+<div id ="credit_card_info" style="display:none;">
+  <%= render partial: "payments/credit_card_form" %>
+</div>
+
+<div id ="bank_account_info" style="display:none;">
+  <%= render partial: "payments/bank_account_form" %>
+</div>
+</br></br>
+
+<div id= "processing" style= "display:none;">
+  <strong>Please do not refresh or press back button</strong>
+  Your transaction is Processing...
+</div>

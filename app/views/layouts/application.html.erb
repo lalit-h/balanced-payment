@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo Balanced Payment</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<%= link_to( (image_tag "balanced_logo.png") , "http://www.balancedpayments.com", target: "_blank") %>
+
+<%= yield %>
+
+</body>
+</html>

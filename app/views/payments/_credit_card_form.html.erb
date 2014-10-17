@@ -1,0 +1,50 @@
+<%= form_tag("", id: "credit-card-form") do %>
+  
+    <div >
+      <label ></label>
+      <div>
+        <%= text_field_tag "cc-name", nil, :placeholder => "Enter Name on Card", :autocomplete => "off" %>
+      </div>
+    </div>
+    <div >
+      <label ></label>
+      <div>
+        <%= text_field_tag "cc-number", nil, :placeholder => "Enter Credit Card Number", :maxlength => 16, :autocomplete => "off" %>
+      </div>
+    </div>
+    <div >
+      <label ></label>
+      <div>
+      	<%= text_field_tag "cc-em", nil, :placeholder => "Month",  :class => "cc-em", :maxlength => 2, :autocomplete => "off"%>
+        <%= text_field_tag "cc-ey", nil, :placeholder => "Year", :class => "cc-ey", :maxlength => 4, :autocomplete => "off"%>
+      </div>
+    </div>
+    <div >
+    <label ></label>
+      <div>
+        <%= select_tag "cc-type", "<option value=''>Select Card Type</option><option value=\"VISA\">VISA</option><option value=\"Mastercard\">Mastercard</option><option value=\"American Express\">American Express</option><option value=\"Discover\">Discover</option>".html_safe %>
+      </div>
+    </div>
+
+    <div  id ="zip_code_required" style= "display:none;">
+    <label ></label>
+      <div>
+        <%= text_field_tag "cc-zip-code", nil, :placeholder => "Zip Code", :class => "cc-zip-code", :maxlength => 5, :autocomplete => "off" %></br>
+        <span class="help-block">Credit card's billing postal code</span>
+      </div>
+    </div>
+
+    <div >
+      <label ></label>
+      <div>
+        <%= text_field_tag "cc-csc", nil, :placeholder => "Security Code", :maxlength => 4, :class => "cc-csc", :autocomplete => "off" %>
+      </div>
+    </div>
+    <div >
+      <label ></label>
+      <div>
+        <%= submit_tag "Pay", class: "btn", id: "cc-submit", disabled_with: "paying..." %>
+      </div>
+    </div>
+
+<% end %>
