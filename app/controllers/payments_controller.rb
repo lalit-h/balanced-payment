@@ -3,10 +3,7 @@ class PaymentsController < ApplicationController
   require 'balanced'
 
 
-
   def initiate_payment
-
-   
   end
 
 
@@ -16,12 +13,9 @@ class PaymentsController < ApplicationController
     get_balanced_key
 
     account_uri = params[:account_uri]
-
-
-    business_name = "Lalit Test Firm"
-    
-    ##You can set your customer business name here
-    customer = Balanced::Customer.new({name: business_name}).save
+    company_name = "Mindfire Solutions"
+    ##You can set your customer business / company name here
+    customer = Balanced::Customer.new({name: company_name}).save
     customer_uri = customer.href
     get_customer = Balanced::Customer.fetch(customer_uri)
    
@@ -41,10 +35,11 @@ class PaymentsController < ApplicationController
     amount_in_dollars = params[:amount]
     #amount_in_dollars * 100 convert into cents
     debit = bank_account.debit(:amount => amount_in_dollars * 100)
-      
     
-
-    #deb_transaction = DebitiorTransaction.create(proposal_id: proposal_id, settlement_delivery_report_id: settlement_delivery_report_id, client_id: client.id, transaction_number: debit.transaction_number, transaction_amount: (debit.amount / 100), transaction_status: debit.status, transaction_created_at: debit.created_at, transaction_type: 'Bank Account', tenant_id: @current_tenant.try(:id))
+    ##You can save the response in your db for future use
+    #debit.transaction_number
+    #debit.amount
+    #debit.statusdebit.created_at
     
     #get your balanced marketplace
     marketplace = Balanced::Marketplace.my_marketplace
@@ -62,8 +57,9 @@ class PaymentsController < ApplicationController
 
     get_balanced_key
     card_uri = params[:card_uri]
-    business_name = "Lalit Test Firm"
-    customer = Balanced::Customer.new({name: business_name}).save
+
+    company_name = "Mindfire Solutions"
+    customer = Balanced::Customer.new({name: company_name}).save
     customer_uri = customer.href
     get_customer = Balanced::Customer.fetch(customer_uri)
     card = Balanced::Card.fetch(card_uri)
@@ -74,10 +70,11 @@ class PaymentsController < ApplicationController
     #amount_in_dollars * 100 convert into cents
 
     debit = card.debit(:amount => amount_in_dollars * 100)
-   
-    #create the client card info info in debitor table
-    #DebitiorCreditCard.create(client_id: client.id, customer_uri: customer_uri, card_uri: card_uri, tenant_id: @current_tenant.try(:id))
-
+    
+    ##You can save the response in your db for future use
+    #debit.transaction_number
+    #debit.amount
+    #debit.statusdebit.created_at
   
     #get the balanced market place
     marketplace = Balanced::Marketplace.my_marketplace
