@@ -32,7 +32,7 @@ class PaymentsController < ApplicationController
       amount_2 = 1
     )
     
-    amount_in_dollars = params[:amount]
+    amount_in_dollars = params[:amount].to_i
     #amount_in_dollars * 100 convert into cents
     debit = bank_account.debit(:amount => amount_in_dollars * 100)
     
@@ -66,7 +66,7 @@ class PaymentsController < ApplicationController
     card.associate_to_customer(customer_uri)
    
 
-    amount_in_dollars = params[:amount]
+    amount_in_dollars = params[:amount].to_i
     #amount_in_dollars * 100 convert into cents
 
     debit = card.debit(:amount => amount_in_dollars * 100)
@@ -90,7 +90,7 @@ class PaymentsController < ApplicationController
   
   ##here is the demo bank account uri on which you need to credit the amount
   def get_marketplace_bank_account
-    Balanced::BankAccount.find("/v1/bank_accounts/BAmKzgSgEvXsVlx9S8qgPkD")
+    Balanced::BankAccount.find("/v1/bank_accounts/BAj6sNNBdMp5WmY6PJ7sAu3")
   end
   
   ##get the balanced marketplace key

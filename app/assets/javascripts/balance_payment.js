@@ -67,6 +67,7 @@ $(document).ready(function () {
 				      },
 			        success: function(data) {
 			        	show_msg(data.success);
+			        	window.reload();
 			        },
 			        error: function(data){
 			          show_msg("There is a problem while making the payment, please try again.");
@@ -184,6 +185,7 @@ $(document).ready(function () {
 						      },
 					        success: function(data) {
 					        	show_msg(data.success);
+					        	window.reload();
 					        	 
 					        },
 					        error: function(data){
