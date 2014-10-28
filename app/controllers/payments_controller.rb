@@ -2,7 +2,8 @@ class PaymentsController < ApplicationController
 
   require 'balanced'
 
-
+  
+  ##initiate payment
   def initiate_payment
   end
 
@@ -14,7 +15,8 @@ class PaymentsController < ApplicationController
 
     account_uri = params[:account_uri]
     company_name = "Mindfire Solutions"
-    ##You can set your customer business / company name here
+
+    ##You can set your customer business / company name here 
     customer = Balanced::Customer.new({name: company_name}).save
     customer_uri = customer.href
     get_customer = Balanced::Customer.fetch(customer_uri)
@@ -22,8 +24,7 @@ class PaymentsController < ApplicationController
     bank_account = Balanced::BankAccount.fetch(account_uri)
     bank_account.associate_to_customer(customer_uri)
     
-    ##befor debiting your customer you need to verify thier bank account
-    #verify a bank account
+    ##befor debiting your customer you need to verify their bank account as per balanced payment
     bank_account = Balanced::BankAccount.fetch(account_uri)
     verify_bank_account = bank_account.verify
     verification = Balanced::BankAccountVerification.fetch(verify_bank_account.href)
@@ -34,7 +35,7 @@ class PaymentsController < ApplicationController
     
     amount_in_dollars = params[:amount].to_i
     #amount_in_dollars * 100 convert into cents
-    debit = bank_account.debit(:amount => amount_in_dollars * 100)
+    debit = bank_account.debit(:amount => amount_in_dollars * 100, appears_on_statement_as: "Debit Amount")
     
     ##You can save the response in your db for future use
     #debit.transaction_number
@@ -44,10 +45,10 @@ class PaymentsController < ApplicationController
     #get your balanced marketplace
     marketplace = Balanced::Marketplace.my_marketplace
     
-    get_marketplace_bank_account.credit(:amount => debit.amount)
+    credit = get_marketplace_bank_account.credit(:amount => debit.amount, appears_on_statement_as: "Credit Amount")
 
     
-    return render json: {success: "You have successfully made the payment, Transaction ID is #{debit.transaction_number}"}
+    return render json: {success: ["Debit Transaction:: #{debit.attributes}", "Credit Transaction:: #{credit.attributes}"] }
 
   end
   
@@ -69,7 +70,7 @@ class PaymentsController < ApplicationController
     amount_in_dollars = params[:amount].to_i
     #amount_in_dollars * 100 convert into cents
 
-    debit = card.debit(:amount => amount_in_dollars * 100)
+    debit = card.debit(:amount => amount_in_dollars * 100, appears_on_statement_as: "Debit Amount")
     
     ##You can save the response in your db for future use
     #debit.transaction_number
@@ -79,9 +80,10 @@ class PaymentsController < ApplicationController
     #get the balanced market place
     marketplace = Balanced::Marketplace.my_marketplace
     
-    get_marketplace_bank_account.credit(:amount => debit.amount)
+    credit = get_marketplace_bank_account.credit(:amount => debit.amount, appears_on_statement_as: "Credit Amount")
 
-    return render json: {success: "You have successfully made the payment, Transaction ID is #{debit.transaction_number}"}
+
+    return render json: {success: ["Debit Transaction:: #{debit.attributes}", "Credit Transaction:: #{credit.attributes}"] }
 
   end
 

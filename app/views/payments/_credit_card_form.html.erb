@@ -3,20 +3,20 @@
     <div >
       <label ></label>
       <div>
-        <%= text_field_tag "cc-name", nil, :placeholder => "Enter Name on Card", :autocomplete => "off" %>
+        <%= text_field_tag "cc-name", "Test", :placeholder => "Enter Name on Card", :autocomplete => "off" %>
       </div>
     </div>
     <div >
       <label ></label>
       <div>
-        <%= text_field_tag "cc-number", nil, :placeholder => "Enter Credit Card Number", :maxlength => 16, :autocomplete => "off" %>
+        <%= text_field_tag "cc-number", "41111111111111111", :placeholder => "Enter Credit Card Number", :maxlength => 16, :autocomplete => "off" %>
       </div>
     </div>
     <div >
       <label ></label>
       <div>
-      	<%= text_field_tag "cc-em", nil, :placeholder => "Month",  :class => "cc-em", :maxlength => 2, :autocomplete => "off"%>
-        <%= text_field_tag "cc-ey", nil, :placeholder => "Year", :class => "cc-ey", :maxlength => 4, :autocomplete => "off"%>
+      	<%= text_field_tag "cc-em", "12", :placeholder => "Month",  :class => "cc-em", :maxlength => 2, :autocomplete => "off"%>
+        <%= text_field_tag "cc-ey", "2014", :placeholder => "Year", :class => "cc-ey", :maxlength => 4, :autocomplete => "off"%>
       </div>
     </div>
     <div >
@@ -29,7 +29,7 @@
     <div  id ="zip_code_required" style= "display:none;">
     <label ></label>
       <div>
-        <%= text_field_tag "cc-zip-code", nil, :placeholder => "Zip Code", :class => "cc-zip-code", :maxlength => 5, :autocomplete => "off" %></br>
+        <%= text_field_tag "cc-zip-code", "12345", :placeholder => "Zip Code", :class => "cc-zip-code", :maxlength => 5, :autocomplete => "off" %></br>
         <span class="help-block">Credit card's billing postal code</span>
       </div>
     </div>
@@ -37,7 +37,7 @@
     <div >
       <label ></label>
       <div>
-        <%= text_field_tag "cc-csc", nil, :placeholder => "Security Code", :maxlength => 4, :class => "cc-csc", :autocomplete => "off" %>
+        <%= text_field_tag "cc-csc", "123", :placeholder => "Security Code", :maxlength => 4, :class => "cc-csc", :autocomplete => "off" %>
       </div>
     </div>
     <div >

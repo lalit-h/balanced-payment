@@ -3,14 +3,14 @@
     <div >
       <label ></label>
       <div>
-        <%= text_field_tag "ba-name", nil, :placeholder => "Account Holder's Name", :class => "ba-name", :autocomplete => "off" %>
+        <%= text_field_tag "ba-name", "Test Account", :placeholder => "Account Holder's Name", :class => "ba-name", :autocomplete => "off" %>
         
       </div>
     </div>
     <div >
       <label ></label>
       <div>
-      	<%= text_field_tag "ba-rn", nil, :placeholder => "Routing Number", :class => "ba-rn", :maxlength => 9, :autocomplete => "off" %>
+      	<%= text_field_tag "ba-rn", "321174851", :placeholder => "Routing Number", :class => "ba-rn", :maxlength => 9, :autocomplete => "off" %>
         <span class="help-block">Enter your 9 digit routing number</span>
       </div>
     </div>
@@ -18,7 +18,7 @@
     <div >
       <label ></label>
       <div>
-        <%= text_field_tag "ba-an", nil, :placeholder => "Account Number", :class => "ba-an", :maxlength => 12, :autocomplete => "off" %>
+        <%= text_field_tag "ba-an", "9900000003", :placeholder => "Account Number", :class => "ba-an", :maxlength => 12, :autocomplete => "off" %>
          <span class="help-block">Enter your bank account number<span>
       </div>
     </div>

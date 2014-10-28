@@ -66,8 +66,9 @@ $(document).ready(function () {
 				        
 				      },
 			        success: function(data) {
-			        	show_msg(data.success);
-			        	window.reload();
+			        	$('#debit_response').html(data.success[0]);
+					      $('#credit_response').html(data.success[1]);
+			        	
 			        },
 			        error: function(data){
 			          show_msg("There is a problem while making the payment, please try again.");
@@ -184,8 +185,8 @@ $(document).ready(function () {
 						       
 						      },
 					        success: function(data) {
-					        	show_msg(data.success);
-					        	window.reload();
+					        	$('#debit_response').html(data.success[0]);
+					        	$('#credit_response').html(data.success[1]);
 					        	 
 					        },
 					        error: function(data){
@@ -220,7 +221,4 @@ $(document).ready(function () {
 
 
 function show_msg(msg){
-	alert(msg)
-
-
-}
+	alert(msg);}
